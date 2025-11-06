@@ -101,7 +101,7 @@ export default function AboutPage() {
             <div className="text-center space-y-4">
               <Mail className="h-6 w-6 text-primary mx-auto" />
               <h4 className="text-xs tracking-[0.2em] text-muted-foreground">EMAIL</h4>
-              <p className="text-lg text-foreground">info@healthguardpharmacy.com</p>
+              <p className="text-lg text-foreground">healthguardrx@gmail.com</p>
             </div>
 
             <div className="text-center space-y-4">

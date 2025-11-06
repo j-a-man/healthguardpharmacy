@@ -25,17 +25,17 @@ export default function HomePage() {
               <div className="space-y-2">
                 <MapPin className="h-5 w-5 text-primary mx-auto" />
                 <p className="text-sm tracking-[0.1em] text-foreground font-medium">Located in Queens</p>
-                <p className="text-xs text-muted-foreground">Delivery Available in all 5 boroughs</p>
+                <p className="text-xs text-muted-foreground">Delivery available in all 5 boroughs</p>
               </div>
               <div className="space-y-2">
                 <Clock className="h-5 w-5 text-primary mx-auto" />
                 <p className="text-sm tracking-[0.1em] text-foreground font-medium">OPEN 6 DAYS</p>
-                <p className="text-xs text-muted-foreground">Mon-Sat Service</p>
+                <p className="text-xs text-muted-foreground">Mon-Sat fast and friendly service</p>
               </div>
               <div className="space-y-2">
                 <Globe className="h-5 w-5 text-primary mx-auto" />
                 <p className="text-sm tracking-[0.1em] text-foreground font-medium">MULTILINGUAL</p>
-                <p className="text-xs text-muted-foreground">3 Languages Spoken</p>
+                <p className="text-xs text-muted-foreground">3 languages spoken</p>
               </div>
             </div>
           </div>
@@ -48,10 +48,10 @@ export default function HomePage() {
           <h2 className="text-xs tracking-[0.25em] text-muted-foreground text-center mb-16">ADDITIONAL SERVICES</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "NOTARY PUBLIC", description: "Professional notary services available" },
-              { title: "METROCARDS", description: "Metrocards & Omnicards in stock" },
-              { title: "FAX & PRINT", description: "Fax and printing services" },
-              { title: "LOTTERY", description: "Play lottery tickets" },
+              { title: "NOTARY PUBLIC", description: "Professional notary services available most weekdays" },
+              { title: "OMNICARDS", description: "Omnicards can be recharged" },
+              { title: "FAX & PRINT", description: "Fax and printing services ($1 per page)" },
+              { title: "LOTTERY & SCRATCH-OFFS", description: "Play lottery and scratch-offs here!" },
             ].map((service, index) => (
               <div
                 key={index}

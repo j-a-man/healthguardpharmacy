@@ -24,10 +24,10 @@ export function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">HG</span>
+              <span className="text-primary-foreground font-bold text-lg">HGP</span>
             </div>
             <span className="text-sm font-medium tracking-[0.2em] text-foreground group-hover:text-primary transition-colors">
-              HEALTH GUARD
+              HEALTH GUARD PHARMACY
             </span>
           </Link>
 

@@ -61,22 +61,22 @@ export default function HoursServicesPage() {
                 icon: FileText,
                 title: "NOTARY PUBLIC SERVICE",
                 description:
-                  "Professional notary public services available during business hours for all your document needs.",
+                  "Professional notary public services available during most weekdays for all your document needs.",
               },
               {
                 icon: Printer,
                 title: "FAX & PRINT SERVICE",
                 description:
-                  "Full-service fax and printing capabilities. Double-sided black & white photocopy self-serve machine available.",
+                  "Full-service fax and printing capabilities ($1 per page). Double-sided black & white photocopy self-serve machine available.",
               },
               {
                 icon: CreditCard,
-                title: "METROCARDS & OMNICARDS",
-                description: "Purchase Metrocards and Omnicards for convenient NYC transit access.",
+                title: "OMNICARDS",
+                description: "Recharge Omnicards for convenient NYC transit access.",
               },
               {
                 icon: Ticket,
-                title: "PLAY LOTTERY",
+                title: "PLAY LOTTERY AND SCRATCH-OFFS",
                 description: "Official lottery ticket sales and redemption services available.",
               },
             ].map((service, index) => (
