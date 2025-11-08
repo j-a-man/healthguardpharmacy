@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useState } from "react"
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -102,6 +103,19 @@ export default function PharmacyPage() {
             <h3 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-light tracking-tight text-foreground">
               Visit Us
             </h3>
+
+            <div className="flex items-center justify-center gap-4 pt-4">
+              <Button size="lg" className="font-[family-name:var(--font-playfair)] rounded-full text-base px-8" asChild>
+                <Link
+                  href="https://atlanticpharmacy.vercel.app" // <-- 1. Change this URL
+                  target="_blank" // Opens in new tab
+                  rel="noopener noreferrer"
+                >
+                  Our Other Location {/* <-- 2. Change this text */}
+                </Link>
+              </Button>
+            </div>
+
           </div>
 
           {/* This grid now holds two columns, one for each location */}

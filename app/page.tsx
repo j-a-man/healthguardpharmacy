@@ -15,6 +15,19 @@ export default function HomePage() {
             <p className="text-lg md:text-xl text-muted-foreground tracking-[0.05em] max-w-2xl mx-auto leading-relaxed">
               Making Medicine Accessible in Jackson Heights, NY
             </p>
+
+            <div className="flex items-center justify-center gap-4 pt-4">
+              <Button size="lg" className="font-[family-name:var(--font-playfair)] rounded-full text-base px-8" asChild>
+                <Link
+                  href="https://atlanticpharmacy.vercel.app" // <-- 1. Change this URL
+                  target="_blank" // Opens in new tab
+                  rel="noopener noreferrer"
+                >
+                  Our Other Location {/* <-- 2. Change this text */}
+                </Link>
+              </Button>
+            </div>
+
           </div>
 
           
