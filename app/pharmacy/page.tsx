@@ -139,7 +139,7 @@ export default function PharmacyPage() {
 
                 <div className="space-y-4">
                   <h4 className="text-xs tracking-[0.2em] text-muted-foreground">DELIVERY AREA</h4>
-                  <p className="text-lg text-foreground leading-relaxed">All 5 Boroughs of New York City</p>
+                  <p className="text-lg text-foreground leading-relaxed">All 5 Boroughs in NYC</p>
                 </div>
 
                 <div className="space-y-4">
@@ -160,7 +160,7 @@ export default function PharmacyPage() {
               {/* Location 2 Map */}
               <div className="w-full h-[450px] rounded-lg overflow-hidden shadow-md">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1170.8541055995101!2d-73.93512678072695!3d40.67682407334484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25c78448dc7a5%3A0x9b03c7c423077cad!2sAtlantic%20Pharmacy!5e0!3m2!1sen!2sus!4v1762450685262!5m2!1sen!2sus" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1284.4999059684803!2d-73.93425417170268!3d40.6773175639877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25c78449142e1%3A0x2527109bbda974e9!2s1706B%20Atlantic%20Ave%2C%20Brooklyn%2C%20NY%20112131206!5e0!3m2!1sen!2sus!4v1762480566933!5m2!1sen!2sus"
                   className="w-full h-full" 
                   width="600" 
                   height="450" 
@@ -176,21 +176,21 @@ export default function PharmacyPage() {
                 <div className="space-y-4">
                   <h4 className="text-xs tracking-[0.2em] text-muted-foreground">ADDRESS</h4>
                   <p className="text-lg text-foreground leading-relaxed">
-                    1750 Atlantic Ave
+                    1706B Atlantic Ave
                     <br />
-                    Brooklyn, NY 11233
+                    Brooklyn, NY 11213
                   </p>
                 </div>
 
                 <div className="space-y-4">
                   <h4 className="text-xs tracking-[0.2em] text-muted-foreground">DELIVERY AREA</h4>
-                  <p className="text-lg text-foreground leading-relaxed">Manhattan & Brooklyn</p>
+                  <p className="text-lg text-foreground leading-relaxed">All 5 Boroughs in NYC</p>
                 </div>
 
                 <div className="space-y-4">
                   <h4 className="text-xs tracking-[0.2em] text-muted-foreground">CONTACT</h4>
                   <p className="text-lg text-foreground leading-relaxed">
-                    (212) 555-1234
+                    (718) 484-2260
                   </p>
                 </div>
               </div>
