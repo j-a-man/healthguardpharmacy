@@ -106,6 +106,7 @@ export function Chatbot() {
       'languages',
       'services_list', // General services
       'mission_values', // About us
+      'greeting',
       'hours', 
       'end'
     ];
