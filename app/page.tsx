@@ -1,8 +1,33 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, MapPin, Clock, Globe } from "lucide-react"
+import { ArrowRight, MapPin, Clock, Globe, Star } from "lucide-react"
 
 export default function HomePage() {
+
+  const testimonials = [
+    {
+      quote:
+        "They are awesome! Great service and fast! I’m never in there more than 5 minutes. Way better than CVS pharmacy and always have the meds I need. Staff is so polite and helpful. They deserve 10 stars!! ⭐️",
+      name: "Josie Rodríguez",
+      location: "Queens, NY",
+      rating: 5,
+    },
+    {
+      quote:
+        "Excellent and fast service. Accepted my out-of-state insurance. I found them online through my insurance's portal and stopped by to get at-home rapid tests. The pharmacist was super kind and I was in-and-out within 5 minutes!",
+      name: "D. Johnson",
+      location: "Queens, NY",
+      rating: 5,
+    },
+    {
+      quote:
+        "I was in need of a face mask and it was about to pour and rain, The polite woman was quick and extremely helpful -- thank you so much",
+      name: "Vikas Patel",
+      location: "Queens, NY",
+      rating: 5,
+    },
+  ]
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -59,12 +84,14 @@ export default function HomePage() {
       <section className="py-24 px-6 lg:px-12 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-xs tracking-[0.25em] text-muted-foreground text-center mb-16">ADDITIONAL SERVICES</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-8">
             {[
               { title: "NOTARY PUBLIC", description: "Professional notary services available most weekdays" },
               { title: "OMNICARDS", description: "Omnicards can be recharged" },
               { title: "FAX & PRINT", description: "Fax and printing services ($1 per page)" },
               { title: "LOTTERY & SCRATCH-OFFS", description: "Play lottery and scratch-offs here!" },
+              { title: "PHOTOCOPY", description: "Make photocopies for 10 cents per page!" },
+              { title: "SERVICE", description: "At HGP we offer fast and friendly service!" },
             ].map((service, index) => (
               <div
                 key={index}
@@ -77,6 +104,65 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <section className="py-24 px-6 lg:px-12">
+        <div className="max-w-6xl mx-auto">
+          {" "}
+          <div className="space-y-16">
+            <div className="text-center space-y-4">
+              <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-light tracking-tight text-foreground leading-tight">
+                What Our Customers Say
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Our community is at the heart of everything we do.
+              </p>
+            </div>
+
+            {/* Testimonials Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="text-center space-y-6">
+                  {/* Star Rating */}
+                  <div className="flex justify-center gap-1">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-5 w-5 text-yellow-400 fill-yellow-400"
+                      />
+                    ))}
+                    {/* Fill empty stars if rating is less than 5 */}
+                    {Array.from({ length: 5 - testimonial.rating }).map(
+                      (_, i) => (
+                        <Star
+                          key={i}
+                          className="h-5 w-5 text-muted-foreground/30"
+                        />
+                      ),
+                    )}
+                  </div>
+
+                  {/* Quote */}
+                  <blockquote className="text-lg text-foreground leading-relaxed italic">
+                    "{testimonial.quote}"
+                  </blockquote>
+
+                  {/* Author */}
+                  <div>
+                    <p className="font-semibold tracking-wide text-foreground">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.location}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
     </main>
   )
 }
