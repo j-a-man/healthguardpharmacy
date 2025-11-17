@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Navigation } from "@/components/navigation"
 import { Suspense } from "react"
+import { Footer } from "@/components/footer"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -15,9 +16,9 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Health Guard Pharmacy | Precision Care for Modern Life",
+  title: "Health Guard Pharmacy | Pharmaceutical services to Queens, NY",
   description: "Est. September 2010. Delivery available to all 5 boroughs. We speak Spanish, Mandarin & Cantonese.",
-  generator: "v0.app",
+  generator: "Jaylin Man",
 }
 
 export default function RootLayout({
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Navigation />
           {children}
         </Suspense>
+        <Footer />
         <Analytics />
       </body>
     </html>
