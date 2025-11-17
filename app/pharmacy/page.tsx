@@ -19,7 +19,7 @@ const carouselImages = [
     alt: "Private pharmacy consultation area",
   },
   {
-    url: "/image4.jpeg",
+    url: "/team_new.jpeg",
     alt: "Modern pharmacy exterior storefront",
   },
 ]
