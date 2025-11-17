@@ -8,6 +8,7 @@ import "./globals.css"
 import { Navigation } from "@/components/navigation"
 import { Suspense } from "react"
 import { Footer } from "@/components/footer"
+import { Chatbot } from "@/components/Chatbot"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
         </Suspense>
         <Footer />
+        <Chatbot />
         <Analytics />
       </body>
     </html>
