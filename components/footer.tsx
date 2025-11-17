@@ -11,10 +11,10 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="space-y-4">
             <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-light text-foreground">
-              Atlantic Pharmacy
+              Health Guard Pharmacy
             </h3>
             <p className="text-sm text-muted-foreground">
-              Your trusted healthcare partner in Brooklyn, since 2019.
+              Your trusted healthcare partner in Queens, since 2010.
             </p>
           </div>
 
@@ -45,18 +45,18 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-muted-foreground">
-                  1706B Atlantic Ave
+                  33-13 Junction Blvd
                   <br />
-                  Brooklyn, NY 11213
+                  Jackson Heights, NY 11372
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <p className="text-sm text-muted-foreground">(718) 484-2260</p>
+                <p className="text-sm text-muted-foreground">(718) 507-6800</p>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                <p className="text-sm text-muted-foreground">AtlanticRx1@gmail.com</p>
+                <p className="text-sm text-muted-foreground">healthguardrx@gmail.com</p>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ export function Footer() {
         {/* Bottom Bar: Copyright */}
         <div className="mt-16 pt-8 border-t border-border text-center">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Atlantic Pharmacy. All rights reserved.
+            &copy; {new Date().getFullYear()} Health Guard Pharmacy. All rights reserved.
           </p>
         </div>
       </div>
