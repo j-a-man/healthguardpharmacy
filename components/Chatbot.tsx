@@ -27,9 +27,9 @@ type ChatIntents = {
   [key: string]: Intent
 }
 
-// --- NEW HELPER FUNCTION: Gets pharmacy's open status ---
+// --- HELPER FUNCTION: Gets pharmacy's open status ---
+// This logic is already correct for HGP's hours
 const getOpenStatus = (): string => {
-  // Pharmacy Hours (24-hour format)
   const hours = {
     0: null, // Sun: Closed
     1: { open: 10, close: 18.5 }, // Mon: 10:00 - 18:30
@@ -41,10 +41,9 @@ const getOpenStatus = (): string => {
   }
   
   try {
-    // Get current time in New York (Pharmacy's Timezone)
     const nyTimeStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" })
     const now = new Date(nyTimeStr)
-    const day = now.getDay() // 0 = Sunday, 1 = Monday, ...
+    const day = now.getDay()
     const currentHour = now.getHours() + now.getMinutes() / 60
     
     const dayHours = hours[day as keyof typeof hours]
@@ -52,24 +51,20 @@ const getOpenStatus = (): string => {
     if (dayHours === null) {
       return "Sorry, we're closed today (Sunday). We open Monday at 10:00 AM."
     }
-    
     if (currentHour < dayHours.open) {
       return `Sorry, we're currently closed. We open today at ${dayHours.open}:00 AM.`
     }
-    
     if (currentHour >= dayHours.close) {
       const nextDay = (day + 1) % 7
       const nextOpen = nextDay === 0 ? "Monday at 10:00 AM" : "tomorrow at 10:00 AM"
       return `Sorry, we're closed for the day. We open ${nextOpen}.`
     }
     
-    // If we're here, we are open!
     const closeTime = dayHours.close === 18.5 ? "6:30 PM" : `${dayHours.close}:00 PM`
     return `Yes, we're open now! We close today at ${closeTime}.`
     
   } catch (e) {
     console.error("Error getting time:", e)
-    // Fallback if time logic fails
     return "Our hours are Mon-Fri (10AM-6:30PM) and Sat (10AM-4PM)."
   }
 }
@@ -85,7 +80,6 @@ export function Chatbot() {
   
   const chatEndRef = useRef<HTMLDivElement>(null)
 
-  // Scroll to the bottom of the chat on new messages
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
@@ -95,24 +89,24 @@ export function Chatbot() {
     const normalizedInput = text.toLowerCase().trim()
     if (!normalizedInput) return 'unknown'
 
-    // We check 'medical_advice' and 'complex' first as they are the most sensitive
-    // This is inside the parseInput function in components/Chatbot.tsx
-    
-    // We check 'medical_advice' and 'complex' first as they are the most sensitive
+    // --- UPDATED PRIORITY ORDER ---
+    // This now includes all your new intents
     const priorityOrder: string[] = [
       'medical_advice', 
       'complex_pharmacy',
       'check_hours',
+      'contact', // Catches phone/email
+      'location', // Catches address
       'delivery',
-      // --- ADD YOUR NEW INTENTS HERE ---
       'other_location',
       'transit_cards',
       'photocopy',
       'fax_print',
-      // --- END OF NEW INTENTS ---
+      'lottery',
+      'languages',
+      'services_list', // General services
+      'mission_values', // About us
       'hours', 
-      'location', 
-      'services', 
       'end'
     ];
     
@@ -138,7 +132,6 @@ export function Chatbot() {
       responseText = unknownMessage
       responseOptions = initialOptions
     } else if (stepKey === 'check_hours') {
-      // --- THIS IS THE DYNAMIC PART ---
       responseText = getOpenStatus() // Call our new function!
       responseOptions = (chatIntents as ChatIntents)[stepKey].options
     } else {
@@ -147,7 +140,6 @@ export function Chatbot() {
         responseText = intent.message
         responseOptions = intent.options
       } else {
-        // Fallback for 'end' or other non-intent keys
         responseText = (chatIntents as ChatIntents)['end'].message
         responseOptions = (chatIntents as ChatIntents)['end'].options
       }
@@ -184,7 +176,7 @@ export function Chatbot() {
     setCurrentOptions(initialOptions)
   }
 
-  // --- (No changes to JSX rendering below) ---
+  // --- (No changes to most of JSX) ---
   return (
     <>
       {/* --- Chat Window --- */}
@@ -193,9 +185,9 @@ export function Chatbot() {
           isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
         }`}
       >
-        {/* Header */}
+        {/* Header (UPDATED NAME) */}
         <div className="flex justify-between items-center p-4 bg-muted/50 border-b border-border flex-shrink-0">
-          <h3 className="font-semibold text-foreground">Atlantic Pharmacy Bot</h3>
+          <h3 className="font-semibold text-foreground">Health Guard Pharmacy Bot</h3>
           <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground">
             <X size={20} />
           </button>
@@ -250,7 +242,6 @@ export function Chatbot() {
         <form onSubmit={handleFormSubmit} className="p-4 border-t border-border flex items-center gap-2 flex-shrink-0">
           <input
             type="text"
-    
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your question..."
