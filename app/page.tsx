@@ -14,6 +14,8 @@ import {
   Copy, 
   HeartHandshake 
 } from "lucide-react"
+// 1. Import the new component
+import { BookingSection } from "@/components/booking-section"
 
 export default function HomePage() {
 
@@ -101,11 +103,8 @@ export default function HomePage() {
         </div>
 
         {/* --- QUICK INFO BAR (Floating Card) --- */}
-        {/* This makes key info immediately accessible without scrolling too far */}
         <div className="mt-16 w-full max-w-4xl animate-in fade-in zoom-in duration-1000 delay-500 fill-mode-both">
             <div className="bg-background/80 backdrop-blur-md border border-border shadow-xl rounded-2xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-8 md:divide-x divide-border">
-                
-                {/* Location */}
                 <div className="flex flex-col items-center text-center space-y-2 group">
                     <div className="h-10 w-10 bg-primary/5 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                         <MapPin className="h-5 w-5 text-primary" />
@@ -115,8 +114,6 @@ export default function HomePage() {
                         <p className="text-xs text-muted-foreground mt-1">Delivery to all 5 Boroughs</p>
                     </div>
                 </div>
-
-                {/* Hours */}
                 <div className="flex flex-col items-center text-center space-y-2 group">
                     <div className="h-10 w-10 bg-primary/5 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                         <Clock className="h-5 w-5 text-primary" />
@@ -126,25 +123,22 @@ export default function HomePage() {
                         <p className="text-xs text-muted-foreground mt-1">Fast & Friendly Service</p>
                     </div>
                 </div>
-
-                {/* Languages */}
                 <div className="flex flex-col items-center text-center space-y-2 group">
                     <div className="h-10 w-10 bg-primary/5 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                         <Globe className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                         <h3 className="font-semibold text-sm tracking-wide">Multilingual</h3>
-                        <p className="text-xs text-muted-foreground mt-1">4 languages spoken</p>
+                        <p className="text-xs text-muted-foreground mt-1">Se Habla Español</p>
                     </div>
                 </div>
-
             </div>
         </div>
       </section>
 
 
       {/* --- SERVICES SECTION (Visual Grid) --- */}
-      <section className="py-24 px-6 lg:px-12 bg-muted/30">
+      <section className="py-24 px-6 lg:px-12 bg-secondary/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-xs font-bold tracking-[0.3em] text-primary uppercase">Convenience</h2>
@@ -157,7 +151,7 @@ export default function HomePage() {
                 key={index}
                 className="group bg-background p-8 rounded-2xl border border-border/50 hover:border-primary/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center space-y-4"
               >
-                <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center text-foreground group-hover:scale-110 transition-transform duration-300">
+                <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center text-foreground group-hover:scale-110 transition-transform duration-300">
                     <service.icon className="h-6 w-6" />
                 </div>
                 <div>
@@ -203,20 +197,27 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          
-          {/* Bottom CTA */}
-          <div className="mt-16 text-center">
-            <p className="text-muted-foreground mb-6">Have you visited us recently?</p>
+        </div>
+      </section>
+
+      {/* --- NEW BOOKING SECTION --- */}
+      <BookingSection />
+
+      {/* --- FINAL CTA --- */}
+      <section className="py-24 px-6 lg:px-12 bg-muted/30">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-foreground">
+              Have you visited us recently?
+            </h2>
             <Button 
                 size="lg" 
-                className="h-14 px-8 rounded-full font-[family-name:var(--font-playfair)] text-lg shadow-lg hover:shadow-primary/25 transition-all hover:-translate-y-1"
+                className="h-14 px-10 rounded-full font-[family-name:var(--font-playfair)] text-lg shadow-lg hover:shadow-primary/25 transition-all hover:-translate-y-1"
                 asChild
             >
                 <Link href="/review">
                     Share Your Experience
                 </Link>
             </Button>
-          </div>
         </div>
       </section>
 

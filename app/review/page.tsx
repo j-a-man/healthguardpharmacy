@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Star, ArrowLeft, Send, Loader2 } from "lucide-react"
 
 // !!! IMPORTANT: Replace this with your actual Google Maps Review Link !!!
-const GOOGLE_REVIEW_URL = "https://www.google.com/maps/place/Health+Guard+Pharmacy/@40.7528,-73.8836,17z/"
+const GOOGLE_REVIEW_URL = "https://www.google.com/search?client=opera-gx&hs=Q6O&sca_esv=7575179a13efdb84&sxsrf=AE3TifNON_VDW87imzp3ST5gkz3uSptGOw:1763545987198&si=AMgyJEuzsz2NflaaWzrzdpjxXXRaJ2hfdMsbe_mSWso6src8s3ND6JhLbglkevp-cg508S-YkSo5niUtjyDrMgyX-r1KqFte-chaq-qrpIH45BRfwhgktTFpZ7xXMMJZHR-d6yVRdCQON4X4EzNxImfzV3orvyHBZQ%3D%3D&q=Health+Guard+Pharmacy+Reviews&sa=X&ved=2ahUKEwjZvPLg-P2QAxVptokEHQbXIoMQ0bkNegQIHRAD&biw=1660&bih=786&dpr=1.13#lrd=0x89c25fbc4eb1434f:0xa7b590b2ca75cd09,3,,,,"
 
 export default function ReviewPage() {
   const [rating, setRating] = useState(0)
