@@ -9,6 +9,8 @@ import { Navigation } from "@/components/navigation"
 import { Suspense } from "react"
 import { Footer } from "@/components/footer"
 import { Chatbot } from "@/components/Chatbot"
+// 1. Import the ThemeProvider
+import { ThemeProvider } from "@/components/theme-provider"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -28,15 +30,26 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    // 2. Add suppressHydrationWarning to html
+    <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} antialiased`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Navigation />
-          {children}
-        </Suspense>
-        <Footer />
-        <Chatbot />
-        <Analytics />
+        
+        {/* 3. Wrap everything inside ThemeProvider */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Suspense fallback={<div>Loading...</div>}>
+            <Navigation />
+            {children}
+          </Suspense>
+          <Footer />
+          <Chatbot />
+          <Analytics />
+        </ThemeProvider>
+        
       </body>
     </html>
   )
