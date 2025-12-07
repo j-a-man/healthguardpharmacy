@@ -2,11 +2,11 @@
 
 import { useState, useRef, useEffect } from "react"
 import { MessageCircle, X, Send } from "lucide-react"
-import { 
-  chatIntents, 
-  initMessage, 
-  unknownMessage, 
-  initialOptions 
+import {
+  chatIntents,
+  initMessage,
+  unknownMessage,
+  initialOptions
 } from "@/lib/chat-data"
 
 // --- TYPES ---
@@ -39,15 +39,15 @@ const getOpenStatus = (): string => {
     5: { open: 10, close: 18.5 }, // Fri: 10:00 - 18:30
     6: { open: 10, close: 16 }, // Sat: 10:00 - 16:00
   }
-  
+
   try {
     const nyTimeStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" })
     const now = new Date(nyTimeStr)
     const day = now.getDay()
     const currentHour = now.getHours() + now.getMinutes() / 60
-    
+
     const dayHours = hours[day as keyof typeof hours]
-    
+
     if (dayHours === null) {
       return "Sorry, we're closed today (Sunday). We open Monday at 10:00 AM."
     }
@@ -59,10 +59,10 @@ const getOpenStatus = (): string => {
       const nextOpen = nextDay === 0 ? "Monday at 10:00 AM" : "tomorrow at 10:00 AM"
       return `Sorry, we're closed for the day. We open ${nextOpen}.`
     }
-    
+
     const closeTime = dayHours.close === 18.5 ? "6:30 PM" : `${dayHours.close}:00 PM`
     return `Yes, we're open now! We close today at ${closeTime}.`
-    
+
   } catch (e) {
     console.error("Error getting time:", e)
     return "Our hours are Mon-Fri (10AM-6:30PM) and Sat (10AM-4PM)."
@@ -77,7 +77,7 @@ export function Chatbot() {
   ])
   const [currentOptions, setCurrentOptions] = useState<Option[]>(initialOptions)
   const [input, setInput] = useState("")
-  
+
   const chatEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export function Chatbot() {
     // --- UPDATED PRIORITY ORDER ---
     // This now includes all your new intents
     const priorityOrder: string[] = [
-      'medical_advice', 
+      'medical_advice',
       'complex_pharmacy',
       'check_hours',
       'contact', // Catches phone/email
@@ -107,17 +107,17 @@ export function Chatbot() {
       'services_list', // General services
       'mission_values', // About us
       'greeting',
-      'hours', 
+      'hours',
       'end'
     ];
-    
+
     for (const key of priorityOrder) {
       const intent = (chatIntents as ChatIntents)[key];
       if (intent.keywords.some(keyword => normalizedInput.includes(keyword))) {
         return key; // Returns 'hours', 'location', etc.
       }
     }
-    
+
     return 'unknown';
   }
 
@@ -164,7 +164,7 @@ export function Chatbot() {
     if (!input.trim()) return
 
     const userMessage = input.trim()
-    
+
     setMessages((prev) => [...prev, { sender: 'user', text: userMessage }])
     const nextStepKey = parseInput(userMessage)
     triggerBotResponse(nextStepKey)
@@ -182,12 +182,11 @@ export function Chatbot() {
     <>
       {/* --- Chat Window --- */}
       <div
-        className={`fixed bottom-24 right-4 sm:right-8 w-80 sm:w-96 h-[500px] bg-card border border-border shadow-xl rounded-lg flex flex-col transition-all duration-300 ${
-          isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
-        }`}
+        className={`fixed bottom-24 right-4 sm:right-8 w-80 sm:w-96 h-[500px] bg-card border border-border shadow-xl rounded-lg flex flex-col transition-all duration-300 z-50 ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
+          }`}
       >
         {/* Header (UPDATED NAME) */}
-        <div className="flex justify-between items-center p-4 bg-muted/50 border-b border-border flex-shrink-0">
+        <div className="flex justify-between items-center p-4 bg-muted/50 border-b border-border shrink-0">
           <h3 className="font-semibold text-foreground">Health Guard Pharmacy Bot</h3>
           <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground">
             <X size={20} />
@@ -202,11 +201,10 @@ export function Chatbot() {
               className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-xs px-4 py-2 rounded-lg whitespace-pre-wrap ${
-                  msg.sender === 'user'
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground'
-                }`}
+                className={`max-w-xs px-4 py-2 rounded-lg whitespace-pre-wrap ${msg.sender === 'user'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground'
+                  }`}
               >
                 {msg.text.split('\n').map((line, i) => (
                   <p key={i}>{line}</p>
@@ -218,7 +216,7 @@ export function Chatbot() {
         </div>
 
         {/* Options / Buttons */}
-        <div className="p-4 border-t border-border space-y-2 flex-shrink-0">
+        <div className="p-4 border-t border-border space-y-2 shrink-0">
           {currentOptions.length > 0 ? (
             currentOptions.map((opt) => (
               <button
@@ -240,7 +238,7 @@ export function Chatbot() {
         </div>
 
         {/* Text Input Form */}
-        <form onSubmit={handleFormSubmit} className="p-4 border-t border-border flex items-center gap-2 flex-shrink-0">
+        <form onSubmit={handleFormSubmit} className="p-4 border-t border-border flex items-center gap-2 shrink-0">
           <input
             type="text"
             value={input}
@@ -261,8 +259,8 @@ export function Chatbot() {
 
       {/* --- Chat Bubble --- */}
       <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 sm:right-8 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all active:scale-95"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="fixed bottom-4 right-4 sm:right-8 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all active:scale-95 z-50"
         aria-label="Open chat"
       >
         <MessageCircle size={28} />

@@ -3,11 +3,11 @@ import { Clock, FileText, Printer, CreditCard, Ticket, Globe } from "lucide-reac
 export default function HoursServicesPage() {
   return (
     <main className="min-h-screen pt-20 overflow-x-hidden bg-background">
-      
+
       {/* --- HERO SECTION --- */}
       <section className="relative pt-24 pb-20 px-6 lg:px-12 text-center flex flex-col items-center justify-center min-h-[40vh]">
         <div className="max-w-4xl mx-auto space-y-6 z-10">
-          <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both">
+          <h1 className="font-(family-name:--font-playfair) text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both">
             Hours & Services
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground tracking-wide leading-relaxed max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 fill-mode-both">
@@ -20,10 +20,10 @@ export default function HoursServicesPage() {
       <section className="pb-24 px-6 lg:px-12">
         <div className="max-w-3xl mx-auto animate-in fade-in zoom-in duration-1000 delay-300 fill-mode-both">
           <div className="bg-card/80 backdrop-blur-sm border border-border p-12 md:p-16 text-center space-y-10 rounded-[2.5rem] shadow-2xl hover:shadow-primary/10 transition-all duration-500">
-            
+
             <div className="space-y-4 flex flex-col items-center">
               <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-2">
-                 <Clock className="h-8 w-8 text-primary" />
+                <Clock className="h-8 w-8 text-primary" />
               </div>
               <h2 className="text-xs font-bold tracking-[0.3em] text-primary uppercase">Open 6 Days A Week</h2>
             </div>
@@ -31,16 +31,16 @@ export default function HoursServicesPage() {
             <div className="space-y-8 pt-4">
               <div className="space-y-2">
                 <p className="text-sm tracking-[0.15em] text-muted-foreground font-medium">MONDAY – FRIDAY</p>
-                <p className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-light text-foreground">
+                <p className="font-(family-name:--font-playfair) text-4xl md:text-5xl font-light text-foreground">
                   10:00 AM – 6:30 PM
                 </p>
               </div>
 
-              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent max-w-xs mx-auto" />
+              <div className="h-px bg-linear-to-r from-transparent via-border to-transparent max-w-xs mx-auto" />
 
               <div className="space-y-2">
                 <p className="text-sm tracking-[0.15em] text-muted-foreground font-medium">SATURDAY</p>
-                <p className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-light text-foreground">
+                <p className="font-(family-name:--font-playfair) text-4xl md:text-5xl font-light text-foreground">
                   10:00 AM – 4:00 PM
                 </p>
               </div>
@@ -54,7 +54,7 @@ export default function HoursServicesPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-xs font-bold tracking-[0.3em] text-muted-foreground uppercase">Additional Services</h2>
-            <h3 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-light tracking-tight text-foreground">
+            <h3 className="font-(family-name:--font-playfair) text-3xl md:text-4xl font-light tracking-tight text-foreground">
               Complete Convenience
             </h3>
           </div>
@@ -89,11 +89,11 @@ export default function HoursServicesPage() {
                 className="group bg-background border border-border p-8 rounded-2xl hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start sm:items-center text-left"
               >
                 <div className="h-14 w-14 rounded-full bg-muted shrink-0 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                    <service.icon className="h-6 w-6" />
+                  <service.icon className="h-6 w-6" />
                 </div>
                 <div className="space-y-2">
-                    <h4 className="text-sm tracking-[0.15em] font-bold text-foreground">{service.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                  <h4 className="text-sm tracking-[0.15em] font-bold text-foreground">{service.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
               </div>
             ))}
@@ -106,14 +106,14 @@ export default function HoursServicesPage() {
         <div className="max-w-5xl mx-auto text-center">
           <div className="bg-primary text-primary-foreground p-12 md:p-20 space-y-8 rounded-[3rem] shadow-2xl hover:scale-[1.01] transition-transform duration-500">
             <div className="inline-block p-4 rounded-full bg-primary-foreground/10 mb-2">
-                <Globe className="h-10 w-10 mx-auto animate-pulse" />
+              <Globe className="h-10 w-10 mx-auto animate-pulse" />
             </div>
-            
+
             <div className="space-y-4">
-                <h2 className="text-xs font-bold tracking-[0.3em] opacity-80">MULTILINGUAL SUPPORT</h2>
-                <p className="font-[family-name:var(--font-playfair)] text-3xl md:text-5xl font-light leading-tight">
-                We speak English, Spanish,<br className="hidden md:block"/> Mandarin & Cantonese
-                </p>
+              <h2 className="text-xs font-bold tracking-[0.3em] opacity-80">MULTILINGUAL SUPPORT</h2>
+              <p className="font-(family-name:--font-playfair) text-3xl md:text-5xl font-light leading-tight">
+                We speak English, Spanish,<br className="hidden md:block" /> Mandarin & Cantonese
+              </p>
             </div>
 
             <p className="text-base md:text-lg tracking-wide leading-relaxed max-w-3xl mx-auto opacity-90 font-light">
