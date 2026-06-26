@@ -37,8 +37,8 @@ export default function RootLayout({
         {/* 3. Wrap everything inside ThemeProvider */}
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Suspense fallback={<div>Loading...</div>}>
