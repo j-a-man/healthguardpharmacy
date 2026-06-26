@@ -1,8 +1,51 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Mail, Phone, ArrowRight, MapPin, Clock, Globe, Star, MessageSquare, Heart, Shield, Users } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Mail, Phone, ArrowRight, MapPin, Clock, Globe, Star, MessageSquare, Heart, Shield, Users, Send, Check, Loader2 } from "lucide-react"
 
 export default function AboutPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("loading")
+    setErrorMessage("")
+
+    try {
+      const res = await fetch("/api/contact-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+      if (data.success) {
+        setStatus("success")
+        setFormData({ name: "", email: "", phone: "", message: "" })
+      } else {
+        setErrorMessage(data.message || "Failed to send message.")
+        setStatus("error")
+      }
+    } catch (err) {
+      console.error(err)
+      setErrorMessage("An error occurred. Please try again later.")
+      setStatus("error")
+    }
+  }
 
   const testimonials = [
     {
@@ -34,7 +77,7 @@ export default function AboutPage() {
       {/* --- HERO SECTION --- */}
       <section className="relative pt-24 pb-20 px-6 lg:px-12 text-center flex flex-col items-center justify-center min-h-[40vh]">
         <div className="max-w-4xl mx-auto space-y-6 z-10">
-          <h1 className="font-(family-name:--font-playfair) text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both">
+          <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both">
             About Us
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground tracking-wide leading-relaxed max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 fill-mode-both">
@@ -54,7 +97,7 @@ export default function AboutPage() {
             </div>
 
             <div className="space-y-8">
-              <h2 className="font-(family-name:--font-playfair) text-3xl md:text-4xl text-foreground leading-tight">
+              <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-foreground leading-tight">
                 Our Mission
               </h2>
               <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
@@ -79,7 +122,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-xs font-bold tracking-[0.3em] text-muted-foreground uppercase">Our Values</h2>
-            <h3 className="font-(family-name:--font-playfair) text-3xl md:text-4xl text-foreground">
+            <h3 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-foreground">
               What Guides Us
             </h3>
           </div>
@@ -119,13 +162,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-
       {/* --- TESTIMONIALS SECTION --- */}
       <section className="py-24 px-6 lg:px-12">
         <div className="max-w-6xl mx-auto">
           <div className="space-y-16">
             <div className="text-center space-y-4">
-              <h2 className="font-(family-name:--font-playfair) text-3xl md:text-4xl font-light tracking-tight text-foreground leading-tight">
+              <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-light tracking-tight text-foreground leading-tight">
                 What Our Customers Say
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -169,7 +211,7 @@ export default function AboutPage() {
             <div className="flex justify-center">
               <Button
                 size="lg"
-                className="h-14 px-10 text-lg font-(family-name:--font-playfair) rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 gap-3"
+                className="h-14 px-10 text-lg font-[family-name:var(--font-playfair)] rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 gap-3"
                 asChild
               >
                 <Link href="/review">
@@ -187,7 +229,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-xs font-bold tracking-[0.3em] text-muted-foreground uppercase">Get In Touch</h2>
-            <h3 className="font-(family-name:--font-playfair) text-3xl md:text-4xl text-foreground">
+            <h3 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-foreground">
               Contact Us
             </h3>
           </div>
@@ -226,6 +268,114 @@ export default function AboutPage() {
             </div>
 
           </div>
+
+          {/* --- CONTACT FORM --- */}
+          <div className="mt-20 max-w-xl mx-auto bg-background border border-border/80 p-8 md:p-12 rounded-[2.5rem] shadow-sm space-y-6">
+            <div className="text-center space-y-2 border-b pb-4 border-border/60">
+              <h4 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold text-foreground">Send Us A Message</h4>
+              <p className="text-xs text-muted-foreground">We typically respond to inquiries within 1 business day.</p>
+            </div>
+
+            {status === "success" ? (
+              <div className="text-center py-8 space-y-4 animate-in zoom-in duration-300">
+                <div className="h-12 w-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto">
+                  <Check className="h-6 w-6" />
+                </div>
+                <h3 className="text-lg font-medium text-foreground">Message Sent!</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Thank you for reaching out. We have sent a confirmation email to your inbox and will get back to you shortly.
+                </p>
+                <Button 
+                  onClick={() => setStatus("idle")} 
+                  variant="outline" 
+                  className="rounded-full px-5 text-xs mt-2"
+                >
+                  Send Another Message
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4 text-left">
+                <div className="space-y-1.5">
+                  <Label htmlFor="contact-name" className="text-xs font-semibold">Your Name *</Label>
+                  <Input
+                    id="contact-name"
+                    required
+                    className="h-10 text-xs rounded-xl"
+                    placeholder="Jane Doe"
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    disabled={status === "loading"}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="contact-email" className="text-xs font-semibold">Email Address *</Label>
+                    <Input
+                      id="contact-email"
+                      type="email"
+                      required
+                      className="h-10 text-xs rounded-xl"
+                      placeholder="jane@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      disabled={status === "loading"}
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="contact-phone" className="text-xs font-semibold">Phone Number *</Label>
+                    <Input
+                      id="contact-phone"
+                      type="tel"
+                      required
+                      className="h-10 text-xs rounded-xl"
+                      placeholder="(718) 555-1234"
+                      value={formData.phone}
+                      onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="contact-message" className="text-xs font-semibold">Message *</Label>
+                  <Textarea
+                    id="contact-message"
+                    required
+                    className="min-h-28 text-xs rounded-xl"
+                    placeholder="Write your question or feedback here..."
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    disabled={status === "loading"}
+                  />
+                </div>
+
+                {status === "error" && (
+                  <div className="text-xs text-destructive bg-destructive/10 p-3 rounded-xl border border-destructive/20">
+                    {errorMessage || "Failed to send message. Please try again."}
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="w-full h-11 rounded-full font-[family-name:var(--font-playfair)] text-xs tracking-wider font-semibold"
+                >
+                  {status === "loading" ? (
+                    <span className="flex items-center gap-2 justify-center">
+                      <Loader2 className="h-4 w-4 animate-spin" /> Sending Message...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2 justify-center">
+                      <Send className="h-3 w-3" /> Send Message
+                    </span>
+                  )}
+                </Button>
+              </form>
+            )}
+          </div>
+
         </div>
       </section>
     </main>
