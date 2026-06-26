@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     // 2. Add suppressHydrationWarning to html
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} antialiased`}>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} antialiased`} suppressHydrationWarning>
         
         {/* 3. Wrap everything inside ThemeProvider */}
         <ThemeProvider

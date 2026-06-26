@@ -32,12 +32,12 @@ export async function POST(request: Request) {
 
         // 3. Configure Email Transporter
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
+            host: process.env.SMTP_HOST || 'smtp.gmail.com',
+            port: parseInt(process.env.SMTP_PORT || '465', 10),
+            secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : true,
             auth: {
-                user: 'jaylinman4@gmail.com',
-                pass: 'wtyckhujotshrcab' // Your App Password
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS
             }
         });
 
@@ -82,14 +82,14 @@ export async function POST(request: Request) {
         await Promise.all([
             // Send to Pharmacy
             transporter.sendMail({
-                from: '"Health Guard Website" <jaylinman4@gmail.com>',
-                to: 'jaylinman4@gmail.com', // Pharmacy's email
+                from: `"Health Guard Website" <${process.env.SMTP_USER || 'jaylinman4@gmail.com'}>`,
+                to: process.env.CONTACT_EMAIL_TO || 'jaylinman4@gmail.com', // Pharmacy's email
                 subject: pharmacySubject,
                 html: pharmacyHtml,
             }),
             // Send to Customer
             transporter.sendMail({
-                from: '"Health Guard Pharmacy" <jaylinman4@gmail.com>',
+                from: `"Health Guard Pharmacy" <${process.env.SMTP_USER || 'jaylinman4@gmail.com'}>`,
                 to: email, // User's email from form
                 subject: userSubject,
                 html: userHtml,

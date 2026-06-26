@@ -4,15 +4,13 @@ const nodemailer = require('nodemailer');
 async function main() {
   console.log("1. Starting Test...");
 
-  // Create the transporter
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.SMTP_PORT || '465', 10),
+    secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : true,
     auth: {
-      user: 'jaylinman4@gmail.com', 
-      // MAKE SURE THIS APP PASSWORD IS CORRECT (NO SPACES)
-      pass: 'wtyckhujotshrcab' 
+      user: process.env.SMTP_USER, 
+      pass: process.env.SMTP_PASS 
     }
   });
 
@@ -31,8 +29,8 @@ async function main() {
   try {
     console.log("3. Sending test email...");
     const info = await transporter.sendMail({
-      from: 'jaylinman4@gmail.com',
-      to: 'jaylinman4@gmail.com', // Sending to yourself
+      from: process.env.SMTP_USER || 'jaylinman4@gmail.com',
+      to: process.env.CONTACT_EMAIL_TO || 'jaylinman4@gmail.com', // Sending to yourself
       subject: 'Test Email from Node.js',
       text: 'If you see this, your email code is working perfectly.',
     });

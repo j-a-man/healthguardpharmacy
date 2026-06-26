@@ -6,14 +6,14 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { rating, message } = body;
 
-        // 1. Setup Transporter (Matches your working test-email.js)
+        // 1. Setup Transporter (Uses environment variables from .env)
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
+            host: process.env.SMTP_HOST || 'smtp.gmail.com',
+            port: parseInt(process.env.SMTP_PORT || '465', 10),
+            secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : true,
             auth: {
-                user: 'jaylinman4@gmail.com',
-                pass: 'wtyckhujotshrcab' // Your working App Password
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS
             }
         });
 
@@ -42,10 +42,9 @@ export async function POST(request: Request) {
         `;
 
         // 3. Send Email
-        // Note: We send TO yourself. Check your SENT folder if not in Inbox.
         await transporter.sendMail({
-            from: '"Health Guard Web" <jaylinman4@gmail.com>',
-            to: 'jaylinman4@gmail.com', 
+            from: `"Health Guard Web" <${process.env.SMTP_USER || 'jaylinman4@gmail.com'}>`,
+            to: process.env.CONTACT_EMAIL_TO || 'jaylinman4@gmail.com', 
             subject: subject,
             html: htmlContent,
         });
